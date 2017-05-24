@@ -11,17 +11,17 @@ my $MAX_LINES = 512;#used to indicate max number of lines for .dat file (dep on 
 ###############################################################################
 #Instruction Encodings
 ###############################################################################
-my $OP_IMM    = "0000000";
+my $OP_IMM    = "0010011";
 my $BRANCH    = "0000110";
 my $ADD       = "0000011";
-my $OP_LUI    = "0000001";
-my $OP_AUIPC  = "0000010";
-my $OP_REG    = "0000011";
-my $OP_JAL    = "0000100";
-my $OP_JALR   = "0000101";
-my $OP_BRANCH = "0000110";
-my $OP_LOAD   = "0000111";
-my $OP_STORE  = "0001000";
+my $OP_LUI    = "0110111";
+my $OP_AUIPC  = "0010111";
+my $OP_REG    = "0110011";
+my $OP_JAL    = "1101111";
+my $OP_JALR   = "1100111";
+my $OP_BRANCH = "1100011";
+my $OP_LOAD   = "0000011";
+my $OP_STORE  = "0100011";
 #@@@ check encoding for SUB and SRA
 
 
