@@ -58,7 +58,18 @@ $line_count +=1;
 #Lines 2-EOF based on assembly file...
 while(my $info = <$fh1>) {
     chomp($info);#remove newline
-    if($info ne '') {
+    if($info eq 'NOP') {
+        #create as addi x0, x0, #0
+        my $rd_b    = "00000";
+        my $rs1_b   = "00000";
+        my $imm12_b = "000000000000";
+        my $funct3 = "000";
+        my $opcode = $OP_IMM;
+
+        my $machine_instr = ($imm12_b . $rs1_b . $funct3 . $rd_b . $opcode);
+        print $fh2 "$machine_instr\n";
+    }
+    elsif($info ne '') {
         my ($rv_operation, $rv_operands) = split / /, $info;
         say "Operations: $rv_operation";
         say "Operands: $rv_operands";
