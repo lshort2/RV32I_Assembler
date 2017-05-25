@@ -8,17 +8,18 @@ use feature 'say';
 use feature 'switch';
 
 say 'Enter number to be converted';
-my $numba = <STDIN>;
-#say 'Enter number of bits allocated for number';
+my $convertMe = <STDIN>;
+say 'Enter number of bits allocated for number';
+my $numBits   = <STDIN>;
 
-print dec2bin($numba);
+print dec2bin($convertMe, $numBits);
 print "\nDone.\n";
 
 #credit to vroom on perlmonks.org for providing info to help construct fxn:
 #http://www.perlmonks.org/?node_id=2664
 sub dec2bin {
-    my $str = $_;
+    my ($str, $numDigits)= @_;
     $str = unpack("B32", pack("N", shift));
 
-    return $str;
+    return substr $str, (32-$numDigits), $numDigits;
 }

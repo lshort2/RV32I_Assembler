@@ -76,7 +76,9 @@ while(my $info = <$fh1>) {
 
                 my $rd_b = generate_5bit($rd);
                 my $rs1_b = generate_5bit($rs1);
-                my $imm12_b = generate_imm12($imm12);#subroutine can do conversions, like #4 to 000000000100
+                substr($imm12, 0, 1, "");#remove the first char
+                my $imm12_b = dec2bin($imm12, 12);
+
                 my $funct3 = "000";
                 my $opcode = $OP_IMM;
 
@@ -101,7 +103,8 @@ while(my $info = <$fh1>) {
 
                 my $rd_b = generate_5bit($rd);
                 my $rs1_b = generate_5bit($rs1);
-                my $imm12_b = generate_imm12($imm12);
+                substr($imm12, 0, 1, "");#remove the first char
+                my $imm12_b = dec2bin($imm12, 12);
                 my $funct3 = "010";
                 my $opcode = $OP_IMM;
 
@@ -113,7 +116,8 @@ while(my $info = <$fh1>) {
 
                 my $rd_b = generate_5bit($rd);
                 my $rs1_b = generate_5bit($rs1);
-                my $imm12_b = generate_imm12($imm12);#subroutine can do conversions, like #4 to 000000000100
+                substr($imm12, 0, 1, "");#remove the first char
+                my $imm12_b = dec2bin($imm12, 12);#subroutine can do conversions, like #4 to 000000000100
                 my $funct3 = "011";
                 my $opcode = $OP_IMM;
 
@@ -125,7 +129,8 @@ while(my $info = <$fh1>) {
 
                 my $rd_b = generate_5bit($rd);
                 my $rs1_b = generate_5bit($rs1);
-                my $imm12_b = generate_imm12($imm12);#subroutine can do conversions, like #4 to 000000000100
+                substr($imm12, 0, 1, "");#remove the first char
+                my $imm12_b = dec2bin($imm12, 12);#subroutine can do conversions, like #4 to 000000000100
                 my $funct3 = "100";
                 my $opcode = $OP_IMM;
 
@@ -163,7 +168,8 @@ while(my $info = <$fh1>) {
 
                 my $rd_b = generate_5bit($rd);
                 my $rs1_b = generate_5bit($rs1);
-                my $imm12_b = generate_imm12($imm12);#subroutine can do conversions, like #4 to 000000000100
+                substr($imm12, 0, 1, "");#remove the first char
+                my $imm12_b = dec2bin($imm12, 12);#subroutine can do conversions, like #4 to 000000000100
                 my $funct3 = "110";
                 my $opcode = $OP_IMM;
 
@@ -175,7 +181,8 @@ while(my $info = <$fh1>) {
 
                 my $rd_b = generate_5bit($rd);
                 my $rs1_b = generate_5bit($rs1);
-                my $imm12_b = generate_imm12($imm12);#subroutine can do conversions, like #4 to 000000000100
+                substr($imm12, 0, 1, "");#remove the first char
+                my $imm12_b = dec2bin($imm12, 12);#subroutine can do conversions, like #4 to 000000000100
                 my $funct3 = "111";
                 my $opcode = $OP_IMM;
 
@@ -186,7 +193,8 @@ while(my $info = <$fh1>) {
                 my ($rd, $imm20) = split /,/, $rv_operands;
 
                 my $rd_b     = generate_5bit($rd);
-                my $imm20_b  = generate_imm20($imm20);
+                substr($imm20, 0, 1, "");#remove the first char
+                my $imm20_b  = dec2bin($imm20, 20);
                 my $opcode = $OP_LUI;
 
                 my $machine_instr = ($imm20_b . $rd_b . $opcode);
@@ -196,7 +204,8 @@ while(my $info = <$fh1>) {
                 my ($rd, $imm20) = split /,/, $rv_operands;
 
                 my $rd_b     = generate_5bit($rd);
-                my $imm20_b  = generate_imm20($imm20);
+                substr($imm20, 0, 1, "");#remove the first char
+                my $imm20_b  = dec2bin($imm20, 20);
                 my $opcode = $OP_AUIPC;
 
                 my $machine_instr = ($imm20_b . $rd_b . $opcode);
@@ -338,7 +347,8 @@ while(my $info = <$fh1>) {
                 my ($rd, $imm21) = split /,/, $rv_operands;
 
                 my $rd_b     = generate_5bit($rd);
-                my $imm20_b  = generate_imm21($imm21);
+                substr($imm21, 0, 1, "");#remove the first char
+                my $imm20_b  = dec2bin($imm21, 21);
 
                 my $imm_20     = substr $imm20_b, 0, 1;
                 my $imm_10to1  = substr $imm20_b, 10, 10;
@@ -354,7 +364,8 @@ while(my $info = <$fh1>) {
 
                 my $rd_b     = generate_5bit($rd);
                 my $rs1_b    = generate_5bit($rs1);
-                my $imm12_b  = generate_imm12($imm12);
+                substr($imm12, 0, 1, "");#remove the first char
+                my $imm12_b  = dec2bin($imm12, 12);
                 my $funct3   = "000";
                 my $opcode   = $OP_JALR;
 
@@ -366,7 +377,8 @@ while(my $info = <$fh1>) {
 
                 my $rs1_b    = generate_5bit($rs1);
                 my $rs2_b    = generate_5bit($rs2);
-                my $imm13_b  = generate_imm13($imm13);
+                substr($imm13, 0, 1, "");#remove the first char
+                my $imm13_b  = dec2bin($imm13, 13);
 
                 my $imm_12    = substr $imm13_b, 0, 1;
                 my $imm_10to5 = substr $imm13_b, 2, 6;
@@ -384,7 +396,8 @@ while(my $info = <$fh1>) {
 
                 my $rs1_b    = generate_5bit($rs1);
                 my $rs2_b    = generate_5bit($rs2);
-                my $imm13_b  = generate_imm13($imm13);
+                substr($imm13, 0, 1, "");#remove the first char
+                my $imm13_b  = dec2bin($imm13, 13);
 
                 my $imm_12    = substr $imm13_b, 0, 1;
                 my $imm_10to5 = substr $imm13_b, 2, 6;
@@ -402,7 +415,8 @@ while(my $info = <$fh1>) {
 
                 my $rs1_b    = generate_5bit($rs1);
                 my $rs2_b    = generate_5bit($rs2);
-                my $imm13_b  = generate_imm13($imm13);
+                substr($imm13, 0, 1, "");#remove the first char
+                my $imm13_b  = dec2bin($imm13, 13);
 
                 my $imm_12    = substr $imm13_b, 0, 1;
                 my $imm_10to5 = substr $imm13_b, 2, 6;
@@ -420,7 +434,8 @@ while(my $info = <$fh1>) {
 
                 my $rs1_b    = generate_5bit($rs1);
                 my $rs2_b    = generate_5bit($rs2);
-                my $imm13_b  = generate_imm13($imm13);
+                substr($imm13, 0, 1, "");#remove the first char
+                my $imm13_b  = dec2bin($imm13, 13);
 
                 my $imm_12    = substr $imm13_b, 0, 1;
                 my $imm_10to5 = substr $imm13_b, 2, 6;
@@ -438,7 +453,8 @@ while(my $info = <$fh1>) {
 
                 my $rs1_b    = generate_5bit($rs1);
                 my $rs2_b    = generate_5bit($rs2);
-                my $imm13_b  = generate_imm13($imm13);
+                substr($imm13, 0, 1, "");#remove the first char
+                my $imm13_b  = dec2bin($imm13, 13);
 
                 my $imm_12    = substr $imm13_b, 0, 1;
                 my $imm_10to5 = substr $imm13_b, 2, 6;
@@ -456,7 +472,8 @@ while(my $info = <$fh1>) {
 
                 my $rs1_b    = generate_5bit($rs1);
                 my $rs2_b    = generate_5bit($rs2);
-                my $imm13_b  = generate_imm13($imm13);
+                substr($imm13, 0, 1, "");#remove the first char
+                my $imm13_b  = dec2bin($imm13, 13);
 
                 my $imm_12    = substr $imm13_b, 0, 1;
                 my $imm_10to5 = substr $imm13_b, 2, 6;
@@ -474,7 +491,8 @@ while(my $info = <$fh1>) {
 
                 my $rd_b = generate_5bit($rd);
                 my $rs1_b = generate_5bit($rs1);
-                my $imm12_b = generate_imm12($imm12);
+                substr($imm12, 0, 1, "");#remove the first char
+                my $imm12_b = dec2bin($imm12, 12);
                 my $funct3 = "010";
                 my $opcode = $OP_LOAD;
 
@@ -487,7 +505,8 @@ while(my $info = <$fh1>) {
                 my $rd_b = generate_5bit($rd);
                 my $rs1_b = generate_5bit($rs1);
                 my $rs2_b = generate_5bit($rs2);
-                my $imm12_b = generate_imm12($imm12);
+                substr($imm12, 0, 1, "");#remove the first char
+                my $imm12_b = dec2bin($imm12, 12);
 
                 my $imm_11to5 = substr $imm12_b, 0, 8;
                 my $imm_4to0  = substr $imm12_b, 8, 4;
@@ -676,3 +695,9 @@ sub generate_imm13 {
     return $converted_string;
 }
 
+sub dec2bin {
+    my ($str, $numDigits)= @_;
+    $str = unpack("B32", pack("N", shift));
+
+    return substr $str, (32-$numDigits), $numDigits;
+}
